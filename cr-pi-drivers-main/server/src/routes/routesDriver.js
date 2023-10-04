@@ -1,11 +1,21 @@
 const { Router } = require("express");
 
-const routerDriver = Router();
-const {allDriverHandler} = require ("../handler")
-// genero el manejador, como el cajero del super recibe req y da la resp que trabajo el controller
-// me traigo los handler 
+const router= Router();
+ // genero los endpoint especificos de drivers (recorda ya sabe que antes dice driver) y los derivo a los handler correspondientes.
+
+ // me traigo los handler con destructuring
+const {allDriversHandler, detailDriverHandler, namesDriversHandler, createDriverHandler} = require ("../handler/driversHandler")
+
+router.get("/", allDriversHandler);
+
+router.get("/:id", detailDriverHandler);
+
+router.get("/name?=", namesDriversHandler);
 
 
-routerDriver.get("/dirvers",allDriverHandler)
+router.post("/", createDriverHandler);
 
 
+
+
+module.exports = router;

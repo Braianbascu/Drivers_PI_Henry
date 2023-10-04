@@ -3,7 +3,6 @@ const { Sequelize } = require("sequelize");
 
 const fs = require('fs');
 const path = require('path');
-const Teams = require("./models/Teams");
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
@@ -36,11 +35,12 @@ const { Driver, Teams } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-//Relacion muchos a muchos, { through: "driver_team" } 
+//Relacion muchos a muchos, { through: "driver_team" } y sindejar hora de cracion
 //indica que la relación se gestionará a través de la misma tabla intermedia "driver_team".
 
-Driver.belongsToMany(Teams, {through: 'driver_team'});
-Teams.belongsToMany(Driver, {through: 'driver_team'});
+Driver.belongsToMany(Teams, {through: 'driver_team',timestamps: false });
+Teams.belongsToMany(Driver, {through: 'driver_team',timestamps: false});
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
