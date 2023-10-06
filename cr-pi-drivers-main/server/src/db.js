@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config(); // ayuda a leer las credenciales
 const { Sequelize } = require("sequelize");
 
 const fs = require('fs');
@@ -41,6 +41,7 @@ const { Driver, Teams } = sequelize.models;
 Driver.belongsToMany(Teams, {through: 'driver_team',timestamps: false });
 Teams.belongsToMany(Driver, {through: 'driver_team',timestamps: false});
 
+// recordar que en la tabla intermedia se genera la clave foranea la cual es la que va a conectar una tabla con la otra
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

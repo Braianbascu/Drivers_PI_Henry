@@ -8,3 +8,6 @@ server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 })
 }).catch(error => console.error(error))
+
+
+// en la conexion, la configuracion de force: true. resetea todo el tiempo la base. despues false para dejar algunos guardados.
